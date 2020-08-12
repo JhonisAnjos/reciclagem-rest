@@ -56,8 +56,12 @@ public class AgendaService {
 		return this.agendaRepository.findAgendaByEmpresaIdAndBairroId(empresaId, bairroId);
 	}
 	
-	public AgendaDTO getDTO(Agenda dto) {
-		return new AgendaDTO(dto.getDiaSemana(), dto.getHorario());
+	public List<Agenda> findAgendaByEmpresaId(Integer empresaId){
+		return this.agendaRepository.findAgendaByEmpresaId(empresaId);
+	}
+	
+	public AgendaDTO getDTO(Agenda obj) {
+		return new AgendaDTO(obj.getDiaSemana(), obj.getHorario(), obj.getBairro().getNome());
 	}
 	
 	public List<AgendaDTO> getDTOList(List<Agenda> list){

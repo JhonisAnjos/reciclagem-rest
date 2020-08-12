@@ -14,6 +14,12 @@ public interface AgendaRepository extends JpaRepository<Agenda, Integer>{
 
 	@Query("select a from Agenda a "
 			+ "join a.empresa e "
+			+ "where e.id=:empresaId ")
+	public List<Agenda> findAgendaByEmpresaId(
+			@Param("empresaId")Integer empresaId);
+	
+	@Query("select a from Agenda a "
+			+ "join a.empresa e "
 			+ "join a.bairro b "
 			+ "where e.id=:empresaId and b.id=:bairroId")
 	public List<Agenda> findAgendaByEmpresaIdAndBairroId(

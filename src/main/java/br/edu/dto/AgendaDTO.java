@@ -10,11 +10,13 @@ public class AgendaDTO implements Serializable{
 	
 	private String horario;
 	
+	private String bairro;
+	
 	public AgendaDTO() {
 	}
 	
 
-	public AgendaDTO(Integer dia, String horario) {
+	public AgendaDTO(Integer dia, String horario, String bairro) {
 		super();
 		
 		switch (dia) {
@@ -43,6 +45,7 @@ public class AgendaDTO implements Serializable{
 			break;
 		}
 		this.horario = horario;
+		this.bairro=bairro;
 	}
 
 
@@ -62,7 +65,15 @@ public class AgendaDTO implements Serializable{
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
-	
-	
 
+
+	public String getBairro() {
+		return bairro;
+	}
+
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	
 }

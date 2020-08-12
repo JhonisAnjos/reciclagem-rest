@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,12 +35,20 @@ public class AgendaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<AgendaDTO>> findAgendaByEmpresaId(
+	public ResponseEntity<List<AgendaDTO>> findAgendaByEmpresaIdAndBairroId(
 			@RequestParam(value = "empresaId")Integer empresaId,
 			@RequestParam(value = "bairroId")Integer bairroId) {
 		List<Agenda> list = this.agendaService.findAgendaByEmpresaIdAndBairroId(empresaId, bairroId);
 		List<AgendaDTO> dtoList = this.agendaService.getDTOList(list);
  		return ResponseEntity.ok().body(dtoList);
+	}
+	
+	@RequestMapping(value = "/empresa/{id}",method = RequestMethod.GET)
+	public ResponseEntity<List<AgendaDTO>> findAgendaByEmpresaId(@PathVariable
+			Integer id) {
+		List<Agenda> list = this.agendaService.findAgendaByEmpresaId(id);
+		List<AgendaDTO> dtoList = this.agendaService.getDTOList(list);
+		return ResponseEntity.ok().body(dtoList);
 	}
 
 }
