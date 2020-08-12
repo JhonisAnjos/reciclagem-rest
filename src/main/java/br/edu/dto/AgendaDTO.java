@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class AgendaDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 
 	private String dia;
 	
@@ -16,8 +18,10 @@ public class AgendaDTO implements Serializable{
 	}
 	
 
-	public AgendaDTO(Integer dia, String horario, String bairro) {
+	public AgendaDTO(Integer id, Integer dia, String horario, String bairro) {
 		super();
+		
+		this.id = id;
 		
 		switch (dia) {
 		case 1:
@@ -75,5 +79,16 @@ public class AgendaDTO implements Serializable{
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	
 }

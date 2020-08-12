@@ -52,12 +52,16 @@ public class MaterialService {
 	}
 
 	public MaterialValorDTO getDTO(MaterialValor materialValor) {
-		return new MaterialValorDTO(materialValor.getMaterial().getNome(), materialValor.getValor());
+		return new MaterialValorDTO(materialValor.getId() ,materialValor.getMaterial().getNome(), materialValor.getValor());
 	}
 	
 	public List<MaterialValorDTO> getDTOList(List<MaterialValor> list){
 		List<MaterialValorDTO> dtoList = new ArrayList<MaterialValorDTO>();
 		list.forEach(m-> dtoList.add(this.getDTO(m)));
 		return dtoList;
+	}
+	
+	public void deleteMaterialValor(Integer id) {
+		this.materialValorRepository.deleteById(id);
 	}
 }

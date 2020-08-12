@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class MaterialValorDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 
 	private String material;
 	
@@ -13,8 +15,9 @@ public class MaterialValorDTO implements Serializable{
 	public MaterialValorDTO() {
 	}
 	
-	public MaterialValorDTO(String material, Double valor) {
+	public MaterialValorDTO(Integer id, String material, Double valor) {
 		super();
+		this.id = id;
 		this.material = material;
 		this.valor = valor;
 	}
@@ -35,5 +38,14 @@ public class MaterialValorDTO implements Serializable{
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	
 }

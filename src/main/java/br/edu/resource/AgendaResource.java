@@ -50,5 +50,11 @@ public class AgendaResource {
 		List<AgendaDTO> dtoList = this.agendaService.getDTOList(list);
 		return ResponseEntity.ok().body(dtoList);
 	}
+	
+	@RequestMapping(value = "/{id}" , method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		agendaService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.domain.Material;
 import br.edu.domain.MaterialValor;
-import br.edu.domain.Usuario;
 import br.edu.dto.MaterialValorDTO;
 import br.edu.dto.MaterialValorNewDTO;
 import br.edu.service.MaterialService;
@@ -47,6 +47,12 @@ public class MaterialResource {
 		List<MaterialValor> list = this.materialService.findMaterialValorByEmpresaId(id);
 		List<MaterialValorDTO> dtoList = this.materialService.getDTOList(list);
  		return ResponseEntity.ok().body(dtoList);
+	}
+	
+	@RequestMapping(value = "/valor/{id}" , method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteMaterialValor(@PathVariable Integer id) {
+		materialService.deleteMaterialValor(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }

@@ -5,18 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import br.edu.domain.Agenda;
 import br.edu.domain.Bairro;
 import br.edu.domain.Empresa;
-import br.edu.domain.Material;
-import br.edu.domain.MaterialValor;
 import br.edu.dto.AgendaDTO;
 import br.edu.dto.AgendaNewDTO;
-import br.edu.dto.MaterialValorDTO;
-import br.edu.dto.MaterialValorNewDTO;
 import br.edu.repository.AgendaRepository;
 import br.edu.repository.BairroRepository;
 import br.edu.repository.EmpresaRepository;
@@ -61,13 +56,17 @@ public class AgendaService {
 	}
 	
 	public AgendaDTO getDTO(Agenda obj) {
-		return new AgendaDTO(obj.getDiaSemana(), obj.getHorario(), obj.getBairro().getNome());
+		return new AgendaDTO(obj.getId() ,obj.getDiaSemana(), obj.getHorario(), obj.getBairro().getNome());
 	}
 	
 	public List<AgendaDTO> getDTOList(List<Agenda> list){
 		List<AgendaDTO> dtoList = new ArrayList<AgendaDTO>();
 		list.forEach(a-> dtoList.add(this.getDTO(a)));
 		return dtoList;
+	}
+	
+	public void delete(Integer id) {
+		this.agendaRepository.deleteById(id);
 	}
 
 }
