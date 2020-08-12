@@ -8,11 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.domain.Material;
 import br.edu.domain.MaterialValor;
+import br.edu.domain.Usuario;
+import br.edu.dto.MaterialValorDTO;
 import br.edu.dto.MaterialValorNewDTO;
 import br.edu.service.MaterialService;
 
@@ -36,6 +39,14 @@ public class MaterialResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value ="/empresa" , method = RequestMethod.GET)
+	public ResponseEntity<List<MaterialValorDTO>> findMaterialValorByEmpresaId(
+			@RequestParam(value = "id")Integer id) {
+		List<MaterialValor> list = this.materialService.findMaterialValorByEmpresaId(id);
+		List<MaterialValorDTO> dtoList = this.materialService.getDTOList(list);
+ 		return ResponseEntity.ok().body(dtoList);
 	}
 
 }
